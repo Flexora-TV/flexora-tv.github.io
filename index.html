@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coupon Saver</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Coupon Saver</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="submit.html">Submit Coupon</a>
+      <a href="login.html" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <input type="text" id="searchBox" placeholder="Search for a store or code..." />
+    <div id="coupon-list">
+      <div class="coupon">
+        <h3>Amazon 10% Off</h3>
+        <p>Use this code at checkout</p>
+        <button onclick="copyCode('SAVE10')">SAVE10</button>
+      </div>
+      <div class="coupon">
+        <h3>Flipkart Flat ₹100 Off</h3>
+        <p>Valid on orders above ₹999</p>
+        <button onclick="copyCode('FLAT100')">FLAT100</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Coupon Saver. All rights reserved.</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
