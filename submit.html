@@ -4,39 +4,69 @@
 <head><meta charset="UTF-8"><title>Submit Coupon</title></head>
 <body>
   <h2>Submit a Coupon</h2>
-  <!-- Read the Formbutton docs at formspree.io/formbutton/docs. See more examples at codepen.io/formspree -->
+  
 <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
 <script>
-  /* paste this line in verbatim */
-  window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
-  /* customize formbutton below*/     
+  window.formbutton = window.formbutton || function(){(formbutton.q = formbutton.q || []).push(arguments)};
+  
   formbutton("create", {
-    action: "https://formspree.io/f/mjkrplyn",
-    title: "How can we help?",
+    action: "https://formspree.io/f/mjkrplyn",  // Replace with your Formspree endpoint
+    title: "🎁 Submit a Coupon",
+    description: "Share your best deals with the world!",
     fields: [
       { 
-        type: "email", 
-        label: "Email:", 
-        name: "email",
+        type: "text", 
+        label: "🏬 Store Name", 
+        name: "store",
         required: true,
-        placeholder: "your@email.com"
+        placeholder: "e.g., Amazon, Flipkart, Myntra"
+      },
+      {
+        type: "text",
+        label: "🔖 Coupon Code",
+        name: "code",
+        required: true,
+        placeholder: "e.g., SAVE20, FREESHIP"
       },
       {
         type: "textarea",
-        label: "Message:",
-        name: "message",
-        placeholder: "What's on your mind?",
+        label: "📝 Description",
+        name: "description",
+        placeholder: "e.g., Valid till June 30, 2025. Works on all electronics.",
+        required: true
       },
-      { type: "submit" }      
+      {
+        type: "email",
+        label: "📧 Your Email (optional)",
+        name: "email",
+        placeholder: "Only if you want credit (optional)"
+      },
+      { type: "submit" }
     ],
     styles: {
       title: {
-        backgroundColor: "gray"
+        backgroundColor: "#00aaff",
+        fontSize: "18px",
+        fontWeight: "bold"
       },
       button: {
-        backgroundColor: "gray"
+        backgroundColor: "#00aaff",
+        color: "#fff",
+        borderRadius: "10px"
+      },
+      modal: {
+        borderRadius: "15px"
+      },
+      field: {
+        borderRadius: "8px"
+      },
+      submitField: {
+        backgroundColor: "#28a745"
       }
-    }
+    },
+    submitText: "🚀 Submit Coupon",
+    thankyouText: "🎉 Thanks for your contribution! Your coupon was submitted successfully.",
+    autoClose: 4
   });
 </script>
 </body>
