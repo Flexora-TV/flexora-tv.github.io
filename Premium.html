@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coupon Xpert – Premium Coupons</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #4a148c;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .filter-bar select {
+      padding: 10px 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .coupon-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .coupon-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 270px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+      border: 2px solid #ddd;
+      transition: transform 0.2s;
+    }
+
+    .coupon-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .coupon-card h3 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .coupon-card p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .coupon-card span {
+      display: block;
+      margin: 12px 0;
+      font-weight: bold;
+      color: #4a148c;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #6a1b9a;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .buy-btn:hover {
+      background: #4a148c;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎁 Premium Coupons</h2>
+
+  <div class="filter-bar">
+    <select id="category-filter">
+      <option value="all">All Categories</option>
+      <option value="lifestyle">Lifestyle</option>
+      <option value="beauty">Beauty</option>
+      <option value="medicinal">Medicinal</option>
+    </select>
+
+    <select id="price-sort">
+      <option value="default">Sort by Price</option>
+      <option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option>
+    </select>
+
+    <select id="date-sort">
+      <option value="default">Sort by Upload</option>
+      <option value="newest">Latest</option>
+      <option value="oldest">Oldest</option>
+    </select>
+  </div>
+
+  <div class="coupon-grid" id="coupon-grid">
+
+    <div class="coupon-card" data-category="lifestyle" data-price="10" data-date="2024-06-01">
+      <h3>🛍️ Amazon 50% Off</h3>
+      <p>Exclusive lifestyle deal. Save big on fashion!</p>
+      <span>₹10</span>
+      <a href="https://gumroad.com/l/amazon50" class="buy-btn" target="_blank">Buy Now</a>
+    </div>
+
+    <div class="coupon-card" data-category="beauty" data-price="15" data-date="2024-06-20">
+      <h3>💄 Nykaa ₹100 Off</h3>
+      <p>Beauty essentials offer. Redeem instantly!</p>
+      <span>₹15</span>
+      <a href="https://gumroad.com/l/nykaa" class="buy-btn" target="_blank">Buy Now</a>
+    </div>
+
+    <div class="coupon-card" data-category="medicinal" data-price="5" data-date="2024-06-28">
+      <h3>💊 Apollo ₹50 Off</h3>
+      <p>Get health care savings instantly.</p>
+      <span>₹5</span>
+      <a href="https://gumroad.com/l/apollo" class="buy-btn" target="_blank">Buy Now</a>
+    </div>
+
+    <div class="coupon-card" data-category="lifestyle" data-price="20" data-date="2024-05-01">
+      <h3>👟 Puma 30% Off</h3>
+      <p>Sporty lifestyle deal for shoes and gear.</p>
+      <span>₹20</span>
+      <a href="https://gumroad.com/l/puma" class="buy-btn" target="_blank">Buy Now</a>
+    </div>
+
+  </div>
+
+  <script>
+    const categoryFilter = document.getElementById('category-filter');
+    const priceSort = document.getElementById('price-sort');
+    const dateSort = document.getElementById('date-sort');
+    const grid = document.getElementById('coupon-grid');
+
+    function applyFilters() {
+      const category = categoryFilter.value;
+      const priceOption = priceSort.value;
+      const dateOption = dateSort.value;
+
+      let cards = Array.from(grid.children);
+
+      // Filter
+      cards.forEach(card => {
+        const match = category === "all" || card.dataset.category === category;
+        card.style.display = match ? "block" : "none";
+      });
+
+      // Sort
+      cards = cards.filter(c => c.style.display !== "none");
+
+      if (priceOption === "low") {
+        cards.sort((a, b) => a.dataset.price - b.dataset.price);
+      } else if (priceOption === "high") {
+        cards.sort((a, b) => b.dataset.price - a.dataset.price);
+      }
+
+      if (dateOption === "newest") {
+        cards.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
+      } else if (dateOption === "oldest") {
+        cards.sort((a, b) => new Date(a.dataset.date) - new Date(b.dataset.date));
+      }
+
+      cards.forEach(card => grid.appendChild(card));
+    }
+
+    categoryFilter.addEventListener('change', applyFilters);
+    priceSort.addEventListener('change', applyFilters);
+    dateSort.addEventListener('change', applyFilters);
+  </script>
+
+</body>
+</html>
