@@ -1,73 +1,70 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>Submit Coupon</title></head>
+<head>
+  <meta charset="UTF-8">
+  <title>Submit a Coupon - Coupon Xpert</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #3498db;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #3498db;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
 <body>
-  <h2>Submit a Coupon</h2>
-  
-<script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
-<script>
-  window.formbutton = window.formbutton || function(){(formbutton.q = formbutton.q || []).push(arguments)};
-  
-  formbutton("create", {
-    action: "https://formspree.io/f/mjkrplyn",  // Replace with your Formspree endpoint
-    title: "🎁 Submit a Coupon",
-    description: "Share your best deals with the world!",
-    fields: [
-      { 
-        type: "text", 
-        label: "🏬 Store Name", 
-        name: "store",
-        required: true,
-        placeholder: "e.g., Amazon, Flipkart, Myntra"
-      },
-      {
-        type: "text",
-        label: "🔖 Coupon Code",
-        name: "code",
-        required: true,
-        placeholder: "e.g., SAVE20, FREESHIP"
-      },
-      {
-        type: "textarea",
-        label: "📝 Description",
-        name: "description",
-        placeholder: "e.g., Valid till June 30, 2025. Works on all electronics.",
-        required: true
-      },
-      {
-        type: "email",
-        label: "📧 Your Email (optional)",
-        name: "email",
-        placeholder: "Only if you want credit (optional)"
-      },
-      { type: "submit" }
-    ],
-    styles: {
-      title: {
-        backgroundColor: "#00aaff",
-        fontSize: "18px",
-        fontWeight: "bold"
-      },
-      button: {
-        backgroundColor: "#00aaff",
-        color: "#fff",
-        borderRadius: "10px"
-      },
-      modal: {
-        borderRadius: "15px"
-      },
-      field: {
-        borderRadius: "8px"
-      },
-      submitField: {
-        backgroundColor: "#28a745"
-      }
-    },
-    submitText: "🚀 Submit Coupon",
-    thankyouText: "🎉 Thanks for your contribution! Your coupon was submitted successfully.",
-    autoClose: 4
-  });
-</script>
+
+  <div class="form-container">
+    <h2>Submit a Coupon</h2>
+    <form action="https://formspree.io/f/mjkrplyn" method="POST">
+      <label for="email">Your Email</label>
+      <input type="email" name="email" required placeholder="your@email.com">
+
+      <label for="message">Coupon Code or Message</label>
+      <textarea name="message" rows="5" required placeholder="Enter your coupon code or description..."></textarea>
+
+      <button type="submit">Submit Coupon</button>
+    </form>
+  </div>
+
 </body>
 </html>
