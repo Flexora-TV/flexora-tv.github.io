@@ -30,16 +30,18 @@
     } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
+      apiKey: "AIzaSyDfdNNRetoq2TSRQ4s7VijHOIIeEE251p4",
       authDomain: "coupon-xpert.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "coupon-xpert.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      projectId: "coupon-xpert",
+      storageBucket: "coupon-xpert.firebasestorage.com",
+      messagingSenderId: "774254420118",
+      appId: "1:774254420118:web:e620f6c61942973f5ce2b7",
+      measurementid:"G-29HV2V8Z9Q"
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const analytics = getAnalytics(app)
 
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
