@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50">
+  <div class="max-w-4xl mx-auto py-10 px-6">
+    <h1 class="text-3xl font-bold mb-6">👋 Welcome, User!</h1>
+    <p class="mb-4">Browse available premium coupons.</p>
+
+    <!-- Filter Options -->
+    <div class="mb-6 flex gap-4">
+      <select class="border rounded px-4 py-2">
+        <option>All Categories</option>
+        <option>Lifestyle</option>
+        <option>Beauty</option>
+        <option>Medicinal</option>
+      </select>
+      <select class="border rounded px-4 py-2">
+        <option>Sort by Price (Low to High)</option>
+        <option>Sort by Price (High to Low)</option>
+        <option>Latest</option>
+        <option>Oldest</option>
+      </select>
+    </div>
+
+    <!-- Display Coupons -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white p-4 rounded shadow">
+        <h3 class="text-lg font-semibold">🎉 Lifestyle Offer</h3>
+        <p>Save 50% on your first order</p>
+        <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Get Coupon</button>
+      </div>
+      <div class="bg-white p-4 rounded shadow">
+        <h3 class="text-lg font-semibold">💄 Beauty Discount</h3>
+        <p>Flat ₹100 off on all items</p>
+        <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Get Coupon</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
