@@ -51,9 +51,9 @@
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         if (user.email === 'yuvrajkumar22032006@gmail.com') {
-          window.location.href = 'dashboard.html';
+          window.location.href = 'admindashboard.html';
         } else {
-          window.location.href = 'user-dashboard.html';
+          window.location.href = 'userdashboard.html';
         }
       } catch (error) {
         document.getElementById('error').textContent = error.message;
