@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Udemy Free Coupons - Coupon Xpert</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800" x-data="couponApp">  <!-- Header -->  <header class="bg-blue-600 text-white py-4 px-6 shadow-md">
+    <div class="flex justify-between items-center">
+      <h1 class="text-xl font-bold">🎓 Udemy Coupons - Coupon Xpert</h1>
+      <div>
+        <input type="text" x-model="search" placeholder="Search courses..." class="rounded px-3 py-1 text-gray-700" />
+      </div>
+    </div>
+  </header>  <!-- Filters -->  <div class="flex flex-wrap gap-4 px-6 py-4 bg-white shadow-sm">
+    <select x-model="category" class="px-4 py-2 border rounded">
+      <option value="">All Categories</option>
+      <option>Development</option>
+      <option>Design</option>
+      <option>Marketing</option>
+      <option>Lifestyle</option>
+      <option>Personal Development</option>
+    </select>
+    <select x-model="sort" class="px-4 py-2 border rounded">
+      <option value="latest">Latest</option>
+      <option value="oldest">Oldest</option>
+      <option value="high">High Discount</option>
+      <option value="low">Low Discount</option>
+    </select>
+  </div>  <!-- Coupon Cards -->  <main class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <template x-for="(coupon, index) in filteredCoupons" :key="coupon.id">
+      <div class="bg-white rounded-lg shadow-md p-4">
+        <h2 class="text-xl font-semibold mb-1" x-text="coupon.title"></h2>
+        <p class="text-sm text-gray-600 mb-2" x-text="coupon.instructor"></p>
+        <p class="text-sm text-gray-700 mb-2" x-text="coupon.description"></p>
+        <div class="flex justify-between items-center text-sm mb-2">
+          <span class="font-bold text-green-600" x-text="coupon.discount + '% OFF'"></span>
+          <span :id="'expiryTimer' + index"></span>
+        </div>
+        <div class="flex justify-between items-center mt-4">
+          <a :href="coupon.link" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded">Enroll Now</a>
+          <button @click="copyCode(coupon.code)" class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300 text-sm">Copy Code</button>
+        </div>
+      </div>
+    </template>
+  </main>  <!-- Footer -->  <footer class="text-center py-4 text-sm text-gray-500">
+    &copy; 2025 Coupon Xpert. All rights reserved.
+  </footer>  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('couponApp', () => ({
+        search: '',
+        category: '',
+        sort: 'latest',
+        coupons: [
+          {
+            id: 1,
+            title: 'JavaScript Mastery',
+            instructor: 'John Doe',
+            description: 'Learn JavaScript from scratch.',
+            discount: 100,
+            code: 'FREEJS100',
+            expiry: '2025-07-15T23:59:59',
+            link: 'https://udemy.com/course/js-mastery?couponCode=FREEJS100',
+            category: 'Development'
+          },
+          {
+            id: 2,
+            title: 'Graphic Design Basics',
+            instructor: 'Jane Smith',
+            description: 'Understand design fundamentals.',
+            discount: 100,
+            code: 'FREEDESIGN',
+            expiry: '2025-07-12T12:00:00',
+            link: 'https://udemy.com/course/design-basics?couponCode=FREEDESIGN',
+            category: 'Design'
+          }
+        ],
+        get filteredCoupons() {
+          let data = this.coupons.filter(c =>
+            c.title.toLowerCase().includes(this.search.toLowerCase()) &&
+            (this.category === '' || c.category === this.category)
+          );
+          if (this.sort === 'latest') data.sort((a, b) => new Date(b.expiry) - new Date(a.expiry));
+          if (this.sort === 'oldest') data.sort((a, b) => new Date(a.expiry) - new Date(b.expiry));
+          if (this.sort === 'high') data.sort((a, b) => b.discount - a.discount);
+          if (this.sort === 'low') data.sort((a, b) => a.discount - b.discount);
+          return data;
+        },
+        copyCode(code) {
+          navigator.clipboard.writeText(code);
+          alert('Coupon code copied!');
+        },
+        init() {
+          this.coupons.forEach((coupon, index) => {
+            this.setupCountdown(coupon.expiry, 'expiryTimer' + index);
+          });
+        },
+        setupCountdown(expiry, id) {
+          const target = new Date(expiry).getTime();
+          const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = target - now;
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (distance <= 0) {
+              el.textContent = '⛔ Expired';
+              clearInterval(timer);
+              return;
+            }
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            el.textContent = `⏰ ${d}d ${h}h left`;
+          }, 1000);
+        }
+      }));
+    });
+  </script></body>
+</html>
