@@ -9,6 +9,17 @@
      crossorigin="anonymous"></script>
   <title>Coupon Xpert</title>
   <link rel="stylesheet" href="style.css" />
+
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "f945c561-18da-4257-bd19-ec397ba17fc5",
+    });
+  });
+</script>
+
 </head>
 <body>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5774406174476669"
